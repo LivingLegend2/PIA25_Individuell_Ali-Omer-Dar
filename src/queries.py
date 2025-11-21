@@ -58,6 +58,17 @@ def get_orders_with_customer():
     session.close()
     return result
 
+def get_customer_purchased_products(customer_id):
+    """Shows all products a customer has purchased with quantities."""
+    session = get_session()
+    result = (session.query(Product.name, OrderItem.quantity, OrderItem.unit_price)
+              .join(OrderItem, Product.id == OrderItem.product_id)
+              .join(Order, OrderItem.order_id == Order.id)
+              .filter(Order.customer_id == customer_id)
+              .all())
+    session.close()
+    return result
+
 def get_products_per_brand():
     """Counts products per brand."""
     session = get_session()
