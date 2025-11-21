@@ -12,7 +12,7 @@ class Brand(Base):
     country = Column(String)
     founded_year = Column(Integer)
     description = Column(Text)
-    created_at = Column(TIMESTAMP, default=datetime.utcnow)
+    created_at = Column(TIMESTAMP, default=datetime.now)
 
 class Product(Base):
     """Represents a product (Produkt)."""
@@ -26,7 +26,7 @@ class Product(Base):
     warranty_months = Column(Integer)
     category = Column(String)
     stock_quantity = Column(Integer)
-    created_at = Column(TIMESTAMP, default=datetime.utcnow)
+    created_at = Column(TIMESTAMP, default=datetime.now)
 
 class Customer(Base):
     """Represents a customer (Kund)."""
@@ -38,7 +38,7 @@ class Customer(Base):
     phone = Column(String)
     city = Column(String)
     registration_date = Column(Date)
-    created_at = Column(TIMESTAMP, default=datetime.utcnow)
+    created_at = Column(TIMESTAMP, default=datetime.now)
 
 class Order(Base):
     """Represents an order (Beställning)."""
@@ -49,7 +49,7 @@ class Order(Base):
     total_amount = Column(Numeric)
     status = Column(String)
     shipping_city = Column(String)
-    created_at = Column(TIMESTAMP, default=datetime.utcnow)
+    created_at = Column(TIMESTAMP, default=datetime.now)
 
 class OrderItem(Base):
     """Represents an order row (Beställningsrad)."""
@@ -59,7 +59,7 @@ class OrderItem(Base):
     product_id = Column(Integer, ForeignKey('products.id', ondelete='CASCADE'), nullable=False)
     quantity = Column(Integer, nullable=False)
     unit_price = Column(Numeric, nullable=False)
-    created_at = Column(TIMESTAMP, default=datetime.utcnow)
+    created_at = Column(TIMESTAMP, default=datetime.now)
 
 class Review(Base):
     """Represents a product review (Recension)."""
@@ -70,4 +70,4 @@ class Review(Base):
     rating = Column(Integer)
     comment = Column(Text)
     review_date = Column(Date)
-    created_at = Column(TIMESTAMP, default=datetime.utcnow)
+    created_at = Column(TIMESTAMP, default=datetime.now)
