@@ -1,3 +1,4 @@
+# Import all query functions from queries.py
 from queries import (
     get_all_products,
     get_products_by_brand,
@@ -14,71 +15,109 @@ from queries import (
 )
 
 def print_products(products):
-    """Print details for a list of products."""
+    """Displays product information in a readable format."""
     for product in products:
-        print(f"{product.id}: {product.name}, Brand ID {product.brand_id}, Category: {product.category}, Price: {product.price} kr")
+        print(f"  [{product.id}] {product.name} ({product.category}) - {product.price} kr")
 
 def print_orders(orders):
-    """Print details for a list of orders."""
+    """Displays order information in a readable format."""
     for order in orders:
-        print(f"Order {order.id}: Customer ID {order.customer_id}, Date: {order.order_date}, Amount: {order.total_amount} kr, Status: {order.status}")
+        print(f"  Order #{order.id}: {order.order_date} - {order.total_amount} kr ({order.status})")
 
-def print_tuple_list(items):
-    """Prints tuple-list output (for group/aggregate queries)."""
+def print_data_rows(items):
+    """Displays aggregated data results in a readable format."""
     for item in items:
-        print(", ".join([str(i) for i in item]))
+        print(f"  {', '.join([str(i) for i in item])}")
 
 def main():
-    print("1. All products sorted by name:")
+    """Runs all database queries and displays results."""
+    # Query 1: All products sorted alphabetically by name
+    print("\n" + "="*60)
+    print("ALL PRODUCTS SORTED BY NAME")
+    print("="*60)
     all_products = get_all_products()
     print_products(all_products)
 
-    print("\n2. All products costing more than 5000 kr:")
+    # Query 2: Products above price threshold
+    print("\n" + "="*60)
+    print("ALL PRODUCTS COSTING MORE THAN 5000 KR")
+    print("="*60)
     expensive_products = get_products_costing_more_than(5000)
     print_products(expensive_products)
 
-    print("\n3. All orders from year 2024:")
+    # Query 3: Filter orders by year
+    print("\n" + "="*60)
+    print("ALL ORDERS FROM YEAR 2024")
+    print("="*60)
     orders_2024 = get_orders_from_year(2024)
     print_orders(orders_2024)
 
-    print("\n4. All pending orders:")
+    # Query 4: Filter orders by status
+    print("\n" + "="*60)
+    print("ALL PENDING ORDERS")
+    print("="*60)
     pending_orders = get_pending_orders()
     print_orders(pending_orders)
 
-    print("\n5. Products with their brand name:")
+    # Query 5: JOIN products with brands
+    print("\n" + "="*60)
+    print("PRODUCTS WITH THEIR BRAND NAME")
+    print("="*60)
     products_with_brand = get_products_with_brand_name()
     for product, brand_name in products_with_brand:
-        print(f"{product.name}, Brand: {brand_name}, Price: {product.price} kr")
+        print(f"  [{product.id}] {product.name} by {brand_name} - {product.price} kr")
 
-    print("\n6. Orders with customer name and total amount:")
+    # Query 6: JOIN orders with customers
+    print("\n" + "="*60)
+    print("ORDERS WITH CUSTOMER NAME AND TOTAL AMOUNT")
+    print("="*60)
     orders_with_customer = get_orders_with_customer()
     for order, first_name, last_name in orders_with_customer:
-        print(f"Order {order.id}: {first_name} {last_name}, Amount: {order.total_amount} kr, Status: {order.status}")
+        print(f"  Order #{order.id}: {first_name} {last_name} - {order.total_amount} kr ({order.status})")
 
-    print("\n7. Products by brand 'Apple':")
+    # Query 7: Filter products by specific brand
+    print("\n" + "="*60)
+    print("PRODUCTS BY BRAND 'APPLE'")
+    print("="*60)
     apple_products = get_products_by_brand("Apple")
     print_products(apple_products)
 
-    print("\n8. Orders for customer ID 1:")
+    # Query 8: Get orders for specific customer
+    print("\n" + "="*60)
+    print("ORDERS FOR CUSTOMER ID 1")
+    print("="*60)
     customer_orders = get_customer_orders(1)
     print_orders(customer_orders)
 
-    print("\n9. Products customer 1 has purchased:")
+    # Query 9: Customer purchase history with quantities
+    print("\n" + "="*60)
+    print("PRODUCTS CUSTOMER 1 HAS PURCHASED")
+    print("="*60)
     customer_purchases = get_customer_purchased_products(1)
     for product_name, quantity, unit_price in customer_purchases:
-        print(f"{product_name}: {quantity} units at {unit_price} kr each")
+        print(f"  {product_name}: {quantity} x {unit_price} kr")
 
-    print("\n10. Number of products per brand:")
+    # Query 10: Aggregation - COUNT products by brand
+    print("\n" + "="*60)
+    print("NUMBER OF PRODUCTS PER BRAND")
+    print("="*60)
     products_per_brand = get_products_per_brand()
-    print_tuple_list(products_per_brand)
+    print_data_rows(products_per_brand)
 
-    print("\n11. Customers who have spent the most:")
+    # Query 11: Aggregation - SUM customer spending
+    print("\n" + "="*60)
+    print("CUSTOMERS WHO HAVE SPENT THE MOST")
+    print("="*60)
     customer_spent = get_customer_total_spent()
-    print_tuple_list(customer_spent)
+    print_data_rows(customer_spent)
 
-    print("\n12. Products with average rating and review count:")
+    # Query 12: Aggregation - AVG product ratings
+    print("\n" + "="*60)
+    print("PRODUCTS WITH AVERAGE RATING AND REVIEW COUNT")
+    print("="*60)
     products_avg_rating = get_products_avg_rating()
-    print_tuple_list(products_avg_rating)
+    print_data_rows(products_avg_rating)
 
+# Run main function when script is executed directly
 if __name__ == "__main__":
     main()
