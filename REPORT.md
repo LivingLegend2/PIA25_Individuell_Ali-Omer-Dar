@@ -2,13 +2,13 @@
 
 ---
 
-# Database Design
+## Database Design
 
-# Overview
+### Overview
 
 This report documents the design and implementation of an electronics store database system. The system manages brands, products, customers, orders, and reviews with a focus on data integrity, relationships, and query performance.
 
-# Table Structure and Purpose
+### Table Structure and Purpose
 
 Brands Table
 
@@ -78,7 +78,7 @@ Stores customer feedback with fields:
 * review_date - Review date (DATE, DEFAULT CURRENT_DATE)
 * created_at - Timestamp (TIMESTAMP, DEFAULT CURRENT_TIMESTAMP)
 
-# Relationships and Foreign Keys
+### Relationships and Foreign Keys
 
 One-to-Many Relationships
 
@@ -95,7 +95,7 @@ Foreign Key Strategy
 * ON DELETE CASCADE used for Products to Reviews to maintain consistency when products are removed
 * Other foreign keys prevent deletion of referenced records to maintain referential integrity
 
-# Data Integrity Constraints
+### Data Integrity Constraints
 
 Primary Keys
 
@@ -123,9 +123,9 @@ Not Null Constraints
 
 ---
 
-# Query Optimization and Performance
+## Query Optimization and Performance
 
-# Index Strategy
+### Index Strategy
 
 Why Indexes Matter
 
@@ -155,7 +155,7 @@ Performance Improvement:
 * After index: Index scan targeting matching dates
 * Measured improvement: Approximately 47% faster execution time
 
-# EXPLAIN ANALYZE Results
+### EXPLAIN ANALYZE Results
 
 The optimization.sql file demonstrates performance testing using PostgreSQL's EXPLAIN ANALYZE command.
 
@@ -185,9 +185,9 @@ After Index:
 
 ---
 
-# Advanced SQL Features
+## Advanced SQL Features
 
-# Subqueries
+### Subqueries
 
 Definition and Purpose
 
@@ -210,7 +210,7 @@ Advantages:
 * Calculates values dynamically without storing results
 * Allows combination of multiple data sources in one query
 
-# Window Functions
+### Window Functions
 
 Definition and Purpose
 
@@ -249,7 +249,7 @@ Advantages:
 * Allows top-N queries (find top 5 customers)
 * Works with multiple partition levels (rankings within groups)
 
-# CASE Statements
+### CASE Statements
 
 Definition and Purpose
 
@@ -294,29 +294,29 @@ Advantages:
 
 ---
 
-# Summary
+## Summary
 
-# Database Design Strengths
+### Database Design Strengths
 
 * Normalized structure prevents data duplication
 * Clear relationships between all tables through foreign keys
 * Comprehensive constraints ensure data validity
 * Timestamp tracking for audit trails
 
-# Performance Optimization
+### Performance Optimization
 
 * Strategic indexes on frequently queried columns
 * Measurable performance improvements (50% speed increase)
 * EXPLAIN ANALYZE validates optimization effectiveness
 * Scalable design for growing data volumes
 
-# Advanced Query Capabilities
+### Advanced Query Capabilities
 
 * Subqueries for complex filtering scenarios
 * Window functions for ranking and analysis without row collapse
 * CASE statements for dynamic data categorization
 * Flexible queries answering diverse business questions
 
-# Conclusion
+### Conclusion
 
 This electronics shop database demonstrates solid design principles combining data integrity, performance optimization, and advanced querying capabilities. The structure supports current operational needs while remaining scalable for future growth. The implementation of indexes, subqueries, window functions, and CASE statements provides a comprehensive analytical toolkit for business intelligence and reporting.
