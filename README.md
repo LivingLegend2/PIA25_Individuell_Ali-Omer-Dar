@@ -4,7 +4,7 @@ This project is a database system for managing an electronics store with product
 
 ---
 
-### Project Files
+## Project Files
 
 SQL Files:
 
@@ -78,7 +78,7 @@ Python libraries (auto-installed from requirements.txt):
 
 ## How to Use
 
-#### Running Python Application
+### Running Python Application
 
 With virtual environment activated:
 python main.py
@@ -98,7 +98,7 @@ This displays results from 12 queries:
 * Top spending customers
 * Products with ratings
 
-#### Running SQL Files
+### Running SQL Files
 
 You can run SQL files directly in your database tool:
 
@@ -114,7 +114,7 @@ Files to run:
 
 ---
 
-#### Troubleshooting
+### Troubleshooting
 
 Virtual environment issues:
 * Make sure you're in project folder
